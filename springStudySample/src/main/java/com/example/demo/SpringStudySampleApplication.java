@@ -1,10 +1,11 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration;
-import com.example.demo.used.Greet;
+import com.example.demo.service.BusinessLogic;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class SpringStudySampleApplication {
@@ -15,11 +16,16 @@ public class SpringStudySampleApplication {
   }
 
   @Autowired
-  private Greet g;
+  @Qualifier("test")
+  private BusinessLogic business1;
+
+  @Autowired
+  @Qualifier("sample")
+  private BusinessLogic business2;
 
   private void execute() {
-    String msg = g.greeting();
-    System.out.println(msg);
+    business1.doLogic();
+    business2.doLogic();
   }
 
 }
