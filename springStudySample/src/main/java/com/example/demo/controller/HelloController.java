@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,26 @@ public class HelloController {
     return new ModelAndView("redirect:/");
   }
 
+  @PostConstruct
+  public void init() {
+    Person p1 = new Person();
+    p1.setName("taro");
+    p1.setAge(39);
+    p1.setMail("taro@yamada");
+    repository.saveAndFlush(p1);
+
+    Person p2 = new Person();
+    p2.setName("jiro");
+    p2.setAge(35);
+    p2.setMail("jiro@yamada");
+    repository.saveAndFlush(p2);
+
+    Person p3 = new Person();
+    p3.setName("hanako");
+    p3.setAge(33);
+    p3.setMail("hanako@yamada");
+    repository.saveAndFlush(p3);
+  }
 
 
 }
