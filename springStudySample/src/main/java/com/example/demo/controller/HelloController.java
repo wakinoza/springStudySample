@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ public class HelloController {
   }
 
   @RequestMapping(value = "/", method = RequestMethod.POST)
+  @Transactional
   public ModelAndView form(@ModelAttribute("formModel") Person person, ModelAndView mav) {
     repository.saveAndFlush(person);
 
